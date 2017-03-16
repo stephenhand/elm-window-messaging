@@ -1,4 +1,4 @@
-module CrossDocumentMessaging exposing (Site, postString, openSite)
+module CrossDocumentMessaging exposing (Site, postString, openSite, close)
 
 import Result
 import Maybe exposing (..)
@@ -17,3 +17,11 @@ openSite url name specs =
 openNativeSite: String -> String -> String -> Site
 openNativeSite =
     Native.CrossDocumentMessaging.open
+
+close: Maybe Site -> ()
+close site =
+    case site of
+        Nothing ->
+            Native.CrossDocumentMessaging.close
+        Just site ->
+            Native.CrossDocumentMessaging.close site

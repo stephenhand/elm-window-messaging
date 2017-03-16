@@ -36,7 +36,11 @@ update msg model  =
     case msg of
         BreakOut
             ->
-            (model, (case CrossDocumentMessaging.openSite "index.html" (Just "break_out") Nothing of _ -> Cmd.none))
+            case model.breakOutSite of
+                Nothing ->
+                    ({model | breakOutSite = Just (CrossDocumentMessaging.openSite "index.html" (Just "break_out") Nothing)}, Cmd.none)
+                Just site ->
+                    ({model | breakOutSite = Nothing}, case (CrossDocumentMessaging.close (Just site)) of _ -> Cmd.none)
         _
             ->
            (case msg of

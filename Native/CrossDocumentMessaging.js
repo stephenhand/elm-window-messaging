@@ -1,6 +1,9 @@
 /**
  * Created by stephen.hand on 09/03/2017.
  */
+
+//extern F2
+
 var _stephenhand$elm_window_messaging$Native_CrossDocumentMessaging = function(){
     if (!window || !window.postMessage){
         throw new Error("Cross document messaging not supported.")
@@ -34,9 +37,9 @@ var _stephenhand$elm_window_messaging$Native_CrossDocumentMessaging = function()
 
 
     return {
-        open : function(url, name, specs){
+        open : F2(function(url, name, specs){
             thisWindow.open(url, name, specs);
-        },
+        }),
         close: function(target){
             (target || thisWindow).close()
         },
@@ -46,8 +49,8 @@ var _stephenhand$elm_window_messaging$Native_CrossDocumentMessaging = function()
         removeMessageListener: function(listener){
             thisWindow.removeMessageListener(listener);
         },
-        postMessage : function(target, message, targetOrigin, transfers){
+        postMessage : F2(function(target, message, targetOrigin, transfers){
             target.postMessage(message, targetOrigin, transfers);
-        }
+        })
     }
 }();
