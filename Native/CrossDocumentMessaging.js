@@ -37,11 +37,12 @@ var _stephenhand$elm_window_messaging$Native_CrossDocumentMessaging = function()
 
 
     return {
-        open : F2(function(url, name, specs){
-            thisWindow.open(url, name, specs);
+        open : F3(function(url, name, specs){
+            return thisWindow.open(url, name, specs);
         }),
         close: function(target){
-            (target || thisWindow).close()
+            (target || thisWindow).close();
+            
         },
         addMessageListener: function(listener){
             thisWindow.addMessageListener(listener);
@@ -49,7 +50,7 @@ var _stephenhand$elm_window_messaging$Native_CrossDocumentMessaging = function()
         removeMessageListener: function(listener){
             thisWindow.removeMessageListener(listener);
         },
-        postMessage : F2(function(target, message, targetOrigin, transfers){
+        postMessage : F4(function(target, message, targetOrigin, transfers){
             target.postMessage(message, targetOrigin, transfers);
         })
     }

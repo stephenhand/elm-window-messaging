@@ -1,3 +1,4 @@
+import Debug exposing (log)
 import Html exposing (Html, button, div, text, input)
 import Html.Events exposing (onClick, onInput)
 import List exposing (map, tail)
@@ -32,7 +33,7 @@ subscriptions model =  Sub.none
 type Msg = Increment | Decrement | FilterChange | BreakOut
 
 update : Msg -> Model -> (Model, Cmd msg)
-update msg model  =
+update msg model  = log "Model State" (
     case msg of
         BreakOut
             ->
@@ -56,6 +57,8 @@ update msg model  =
              _ ->
                model
             , Cmd.none)
+    )
+
 
 
 
