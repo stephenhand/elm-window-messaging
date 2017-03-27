@@ -44,14 +44,22 @@ var _stephenhand$elm_window_messaging$Native_CrossDocumentMessaging = function()
             (target || thisWindow).close();
             
         },
+        origin : function(){
+            return window.opener ? {ctor:'Just', _0:wrapWindow(window.opener)} : {ctor:'Nothing'}
+        },
         addMessageListener: function(listener){
             thisWindow.addMessageListener(listener);
         },
         removeMessageListener: function(listener){
             thisWindow.removeMessageListener(listener);
         },
-        postMessage : F4(function(target, message, targetOrigin, transfers){
+        postMessage : F3(function(target, message, targetOrigin){
+            target.postMessage(message, targetOrigin);
+            return message;
+        }),
+        postMessageWithTransfers : F4(function(target, message, targetOrigin, transfers){
             target.postMessage(message, targetOrigin, transfers);
+            return message;
         })
     }
 }();
